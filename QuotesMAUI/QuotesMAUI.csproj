@@ -49,7 +49,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
+	  <None Remove="Resources\Fonts\materialdesignicons-webfont.ttf" />
+	  <None Remove="Resources\Fonts\MontserratAlternates-Bold.ttf" />
+	  <None Remove="Resources\Fonts\MontserratAlternates-Light.ttf" />
+	  <None Remove="Resources\Fonts\MontserratAlternates-Regular.ttf" />
+	  <None Remove="Resources\Fonts\MontserratAlternates-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\MontserratAlternates-Thin.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\QuoteView.xaml.cs">
+	    <DependentUpon>QuoteView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\QuoteView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
