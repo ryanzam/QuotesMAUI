@@ -1,6 +1,7 @@
-﻿using Microsoft.Maui.Handlers;
-using QuotesMAUI.Services.CategoryService;
+﻿using QuotesMAUI.Services.CategoryService;
 using QuotesMAUI.Services.QuoteService;
+using QuotesMAUI.ViewModels;
+using QuotesMAUI.Views;
 
 namespace QuotesMAUI;
 
@@ -11,7 +12,6 @@ public partial class MainPage : ContentPage
     public MainPage(IQuoteService quoteService, ICategoryService categoryService)
     {
         InitializeComponent();
-        ChangeSearchBar();
         QuoteService = quoteService;
         CategoryService = categoryService;
     }
@@ -22,21 +22,15 @@ public partial class MainPage : ContentPage
         categoryCollectionView.ItemsSource = await CategoryService.GetCategories();
         quotesCarouselView.ItemsSource = await QuoteService.GetQuotes();
     }
-
-    private void ChangeSearchBar()
+    private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        SearchBarHandler.Mapper.AppendToMapping("CustomSearchIconColor", (handler, view) =>
-        {
-#if ANDROID
-            var context = handler.PlatformView.Context;
-            var searchIconId = context.Resources.GetIdentifier("search_mag_icon", "id", context.PackageName);
-            if(searchIconId !=0)
-            {
-            var searchIcon = handler.PlatformView.FindViewById<Android.Widget.ImageView>(searchIconId);
-            searchIcon.SetColorFilter(Android.Graphics.Color.Rgb(172,157,185));
-            }
-#endif
-        });
+        var selectedCategory = e.CurrentSelection.FirstOrDefault() as CategoryViewModel;
+        quotesCarouselView.ItemsSource = await QuoteService.FilterQuotes(selectedCategory.Id);
+    }
+
+    private async void OnLoginClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(LoginView));
     }
 }
 

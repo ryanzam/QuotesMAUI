@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuotesMAUI.Views.LoginView"
+             Title="LoginView"
+             BackgroundColor="#0D0118"
+             xmlns:helpers="clr-namespace:QuotesMAUI.Helpers">
+    <Grid RowDefinitions=".4*,.1*,.1*,.1*,.1*,.1*,.1*" BackgroundColor="#311B45"  Margin="20" Padding="25">
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+            <Label Text="Welcome" 
+                   FontFamily="SemiBold"
+                   FontSize="30"
+                   TextColor="White"/>
+            <Label Text="Login to your account" 
+                   FontSize="20"
+                   FontFamily="Regular"
+                   TextColor="White"/>
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1" ColumnDefinitions=".1*,.9*">
+            <Label FontFamily="MaterialDesignIcons"
+                Text="{x:Static helpers:MDIcons.AccountArrowRight}"
+                FontSize="35" 
+                VerticalOptions="Center"
+                BackgroundColor="#6E557C"
+                TextColor="White"/>
+            <Entry Grid.Column="1" Placeholder="Enter email"
+                   VerticalOptions="Center"
+                   ClearButtonVisibility="Never"
+                   HorizontalOptions="Fill"
+                   Margin="10,0,0,0"/>
+        </Grid>
+
+        <Grid Grid.Row="2" ColumnDefinitions=".1*,.9*">
+            <Label FontFamily="MaterialDesignIcons"
+                Text="{x:Static helpers:MDIcons.Lock}"
+                FontSize="35" 
+                VerticalOptions="Center"
+                BackgroundColor="#6E557C"
+                TextColor="White"/>
+            <Entry Grid.Column="1" Placeholder="Enter password"
+                   IsPassword="True"
+                   VerticalOptions="Center"
+                   ClearButtonVisibility="Never"
+                   HorizontalOptions="Fill"
+                   Margin="10,0,0,0"/>
+        </Grid>
+
+        <Grid Grid.Row="3" ColumnDefinitions=".1*,.45*,.45*">
+            <CheckBox Color="White"/>
+            <Label Grid.Column="1" 
+                   Text="Remember me"
+                   FontSize="15"
+                   TextColor="White"
+                   VerticalOptions="Center"/>
+            <Label Grid.Column="2" 
+                   Text="Forgot password?"
+                   FontSize="15"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="End"/>
+        </Grid>
+
+        <Button Grid.Row="4"
+                Text="Log in" 
+                FontFamily="Regular"
+                HeightRequest="60"
+                BackgroundColor="#6E557C"/>
+
+        <Label Grid.Row="5"
+               Text="OR"
+               FontFamily="SemiBold"
+               FontSize="18" 
+               TextColor="White"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+
+        <Button Grid.Row="6"
+                Text="Register" 
+                FontFamily="Regular"
+                HeightRequest="60"
+                BackgroundColor="#6E556F"/>
+
+    </Grid>
+</ContentPage>

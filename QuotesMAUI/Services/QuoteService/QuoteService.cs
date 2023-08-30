@@ -126,5 +126,23 @@ namespace QuotesMAUI.Services.QuoteService
                 Debug.WriteLine($"Error occured while deleting quote: " + e.Message);
             }
         }
+        public async Task<List<QuoteViewModel>> FilterQuotes(int catId)
+        {
+            List<QuoteViewModel> quotes = new();
+            try
+            {
+                HttpResponseMessage response = await Http.GetAsync($"{Uri}/category/{catId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    quotes = JsonSerializer.Deserialize<List<QuoteViewModel>>(content, JsonSerializerOpts);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error occured while fetching quotes: " + e.Message);
+            }
+            return quotes;
+        }
     }
 }

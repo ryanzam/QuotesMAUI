@@ -74,5 +74,17 @@ namespace QuotesAPI.Controllers
             await Context.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpGet]
+        [Route("Category/{categoryId}")]
+        public async Task<IActionResult> FilterQuotesByCategory(int categoryId)
+        {
+            var quotes = await Context.Quotes.ToListAsync();
+            if (quotes != null)
+            {
+                quotes = quotes.Where(q => q.CategoryId == categoryId).ToList();
+            }
+            return Ok(quotes);
+        }
     }
 }

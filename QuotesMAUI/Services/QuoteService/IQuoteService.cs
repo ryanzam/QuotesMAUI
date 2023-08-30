@@ -9,5 +9,6 @@ namespace QuotesMAUI.Services.QuoteService
         Task<List<QuoteViewModel>> GetQuotes();
         Task PostQuote(QuoteViewModel quote);
         Task UpdateQuote(QuoteViewModel quote);
+        Task<List<QuoteViewModel>> FilterQuotes(int catId);
     }
 }
