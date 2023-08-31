@@ -20,22 +20,52 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    <Grid BackgroundColor="#0D0118" RowDefinitions=".1*,.2*,.8*">
-        <HorizontalStackLayout Margin="20,10,20,10" Spacing="100">
-            <Label Text="Quotes App" 
-               TextColor="White" 
-               FontFamily="Bold"
-               VerticalOptions="Center"
-               FontSize="30"/>
-            <Button FontFamily="MaterialDesignIcons"
-                Text="{x:Static helpers:MDIcons.Account}"
-                FontSize="35" 
-                VerticalOptions="Center"
-                BackgroundColor="#6E557C"
-                TextColor="White"
-                Clicked="OnLoginClicked"/>
-        </HorizontalStackLayout>
 
+    <Grid BackgroundColor="#0D0118" RowDefinitions=".1*,.2*,.8*">
+        <Grid ColumnDefinitions=".6*,.2*,.2*" Margin="20,0,20,0">
+            <Label Text="QuotesApp" 
+                   TextColor="White" 
+                   FontFamily="Bold"
+                   VerticalOptions="Center"
+                   FontSize="24"/>
+            <Button x:Name="PostBtn" 
+                    Grid.Column="1"
+                    FontFamily="MaterialDesignIcons"
+                    Text="{x:Static helpers:MDIcons.Post}"
+                    SemanticProperties.Description="Add Quote"
+                    IsVisible="false"
+                    FontSize="25" 
+                    VerticalOptions="Center"
+                    BackgroundColor="#6E557C"
+                    TextColor="White"
+                    HorizontalOptions="End"
+                    Clicked="PostBtn_Clicked"/>
+            <Button x:Name="LoginBtn"
+                    Grid.Column="2"
+                    FontFamily="MaterialDesignIcons"
+                    Text="{x:Static helpers:MDIcons.Login}"
+                    SemanticProperties.Description="login"
+                    FontSize="25" 
+                    VerticalOptions="Center"
+                    BackgroundColor="#6E557C"
+                    TextColor="White"
+                    HorizontalOptions="End"
+                    Clicked="OnLoginClicked"/>
+            <Button x:Name="LogoutBtn" 
+                    Grid.Column="2"
+                    FontFamily="MaterialDesignIcons"
+                    Text="{x:Static helpers:MDIcons.Logout}"
+                    SemanticProperties.Description="logout"
+                    IsVisible="false"
+                    FontSize="25" 
+                    VerticalOptions="Center"
+                    BackgroundColor="#6E557C"
+                    TextColor="White"
+                    HorizontalOptions="End"
+                    Clicked="OnLogoutClicked"/>
+        </Grid>
+
+        
         <CollectionView x:Name="categoryCollectionView" Grid.Row="1" Margin="20,30,20,10" VerticalOptions="Center" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15"/>

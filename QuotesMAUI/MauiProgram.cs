@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
+using QuotesMAUI.Auth;
 using QuotesMAUI.Services.CategoryService;
 using QuotesMAUI.Services.QuoteService;
 
@@ -11,6 +13,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("MontserratAlternates-Bold.ttf", "Bold");
@@ -28,6 +31,13 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+        builder.Services.AddSingleton(new AuthClient(new()
+        {
+            Domain = "mydomain",
+            ClientId = "myclientId",
+            Scope = "openid profile",
+            RedirectUri = "myapp://callback"
+        }));
 
         return builder.Build();
     }

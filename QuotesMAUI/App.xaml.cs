@@ -1,6 +1,4 @@
-﻿using QuotesMAUI.Views;
-
-namespace QuotesMAUI;
+﻿namespace QuotesMAUI;
 
 public partial class App : Application
 {
@@ -8,6 +6,6 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        MainPage = new LoginView();
+        MainPage = new AppShell();
     }
 }
